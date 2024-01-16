@@ -30,19 +30,16 @@ app.delete("/todos", (req, res) => {
     const index = todos.findIndex(obj => obj.id === parseInt(req.query.id as string));
     if (index !== -1) {
         todos.splice(index, 1);
-        res.send();
     }
-    else {
-        res.status(400).send();
-    }
+    res.send(renderToString(<TodoList todos={todos} />));
 })
 
 function TodoList(props: { todos: Todo[] }) {
     return (
-        <ul>
+        <ul id="todo-list">
             {props.todos.length ? props.todos.map((todo) => (
-                <li id={`todo-${todo.id}`} key={`todo-${todo.id}`}>
-                    {todo.name}<button hx-trigger="click" hx-swap="outerHTML" hx-target={`#todo-${todo.id}`} hx-delete={`/todos?id=${todo.id}`}>x</button>
+                <li key={`todo-${todo.id}`}>
+                    {todo.name}<button hx-trigger="click" hx-swap="outerHTML" hx-target="#todo-list" hx-delete={`/todos?id=${todo.id}`}>x</button>
                 </li>
             )) : "No todos found"}
         </ul>
