@@ -39,7 +39,9 @@ function TodoList(props: { todos: Todo[] }) {
         <ul id="todo-list">
             {props.todos.length ? props.todos.map((todo) => (
                 <li key={`todo-${todo.id}`}>
-                    {todo.name}<button hx-swap="outerHTML" hx-target="#todo-list" hx-delete={`/todos?id=${todo.id}`}>x</button>
+                    {todo.name} <button hx-swap="outerHTML" hx-target="#todo-list" hx-delete={`/todos?id=${todo.id}`}>
+                        x
+                    </button>
                 </li>
             )) : "No todos found"}
         </ul>
