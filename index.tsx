@@ -12,11 +12,11 @@ app.use(express.static(import.meta.dir));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
     res.sendFile(path.join(import.meta.dir, './index.html'));
 });
 
-app.get("/todos", (req, res) => {
+app.get("/todos", (_, res) => {
     res.send(renderToString(<TodoList todos={todos} />));
 })
 
